@@ -17,7 +17,7 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
-resource "azurerm_resource_group" "aula-az-rg" {
-  name     = "aula-az-rg"
+resource "azurerm_resource_group" "lab-az-rg" {
+  name     = "lab-az-rg"
   location = "East US"
 }
