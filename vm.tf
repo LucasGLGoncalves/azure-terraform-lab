@@ -1,5 +1,6 @@
 resource "azurerm_public_ip" "lab-az-vm-puip" {
   name                = "lab-az-vm-puip"
+  depends_on = [ azurerm_subnet.az-subnet-publica ]
   resource_group_name = azurerm_resource_group.lab-az-rg.name
   location            = azurerm_resource_group.lab-az-rg.location
   allocation_method   = "Static"
@@ -11,6 +12,7 @@ resource "azurerm_public_ip" "lab-az-vm-puip" {
 
 resource "azurerm_network_interface" "lab-az-vm-netint" {
   name                = "lab-az-vm-netint"
+  depends_on = [ azurerm_public_ip.lab-az-vm-puip ]
   location            = azurerm_resource_group.lab-az-rg.location
   resource_group_name = azurerm_resource_group.lab-az-rg.name
 
@@ -24,6 +26,7 @@ resource "azurerm_network_interface" "lab-az-vm-netint" {
 
 resource "azurerm_linux_virtual_machine" "lab-az-vm01-pub" {
   name                = "lab-az-vm01-pub"
+  depends_on = [ azurerm_network_interface.lab-az-vm-netint ]
   resource_group_name = azurerm_resource_group.lab-az-rg.name
   location            = azurerm_resource_group.lab-az-rg.location
   size                = "Standard_B1s"

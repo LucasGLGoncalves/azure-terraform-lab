@@ -1,5 +1,6 @@
 resource "azurerm_network_security_group" "lab-az-pub-sg" {
   name                = "lab-az-pub-sg"
+  depends_on = [ azurerm_subnet.az-subnet-publica ]
   location            = azurerm_resource_group.lab-az-rg.location
   resource_group_name = azurerm_resource_group.lab-az-rg.name
 
